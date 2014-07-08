@@ -14,6 +14,8 @@ public class MyActivity extends Activity {
     private TextView mTextViewTime;
     private TextView mTextViewDate;
 
+    private TimeSetter mTimeSetter = new TimeSetter();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,7 @@ public class MyActivity extends Activity {
                 mTextViewTime = (TextView) stub.findViewById(R.id.time);
                 mTextViewDate = (TextView) stub.findViewById(R.id.date);
 
-                mHandler.post(new TimeSetter());
+                mHandler.post(mTimeSetter);
             }
         });
     }
@@ -55,7 +57,7 @@ public class MyActivity extends Activity {
             mTextViewTime.setText(timeStr);
             mTextViewDate.setText(dateStr);
 
-            mHandler.postDelayed(new TimeSetter(), 1000);
+            mHandler.postDelayed(mTimeSetter, 1000);
         }
     }
 }
